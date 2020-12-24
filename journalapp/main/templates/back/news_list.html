@@ -1,0 +1,108 @@
+
+{% extends 'back/master.html' %}
+{% load static %}
+
+
+{% block mainblock %}
+
+   <!-- Datatables Header -->
+   <div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="fa fa-table"></i>لیست اخبار<br><small></small>
+        </h1>
+    </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+    <li>News</li>
+    <li><a href="/panel/news/list/">لیست</a></li>
+</ul>
+<!-- END Datatables Header -->
+
+
+
+  <!-- Datatables Content -->
+  <div class="block full">
+    <div class="block-title">
+        <h2><strong>لیست اخبار</strong> </h2>
+    </div>
+
+    <div class="table-responsive">
+        <table id="" class="table table-vcenter table-condensed table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-center">تصویر</th>
+                    <th class="text-center">تیتر</th>
+                    <th class="text-center">زمان</th>
+                    <th class="text-center">دسته بندی</th>
+                    <th class="text-center">نویسنده</th>
+                    <th class="text-center">عملیات ها</th>
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for cc in news %}
+                <tr>
+
+                    <td class="text-center">
+                        <img style="display: inline-block; width:50px; height:50px;" src="{{cc.image_url }}" alt="avatar" class="img-circle">
+                    </td>
+                    <td>{{cc.name}}</td>
+                    <td>{{cc.jalali_time_added}}</td>
+                    <td>{% for cat in cc.catname.all %}
+                    {{cat.name}}
+                    {% endfor %}</td>
+                    <td>{{cc.writer}}</td>
+
+                    <td class="text-center">
+                        <div class="btn-group">
+                            <a href="{%url 'news_edit' pk=cc.pk %}" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil"> ویرایش</i></a>
+                            <a href="{%url 'news_delete' pk=cc.pk %}" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times">حذف</i></a>
+
+
+
+                        </div>
+                    </td>
+                </tr>
+
+
+               {% endfor %}
+            </tbody>
+
+        </table>
+        Page {{page_obj.number}} From {{page_obj.paginator.num_pages}}
+        <br/><br/>
+        {% if page_obj.has_previous %}
+        <a href="?page={{page_obj.previous_page_number}}"  data-toggle="tooltip" title="Previous" class="btn btn-xs btn-default"> Previous</a>
+        {% endif %}
+
+        {% for i in page_obj.paginator.page_range %}
+            {% if page_obj.number == i %}
+                <a href="#" onclick="return false;" data-toggle="tooltip" title="{{Disables}}" class="btn btn-xs btn-default"> {{i}}</a>
+            {% else %}
+                <a href="?page={{i}}" data-toggle="tooltip" title="{{i}}" class="btn btn-xs btn-default"> {{i}}</a>
+            {% endif %}
+        {% endfor %}
+
+            {% if page_obj.has_next %}
+        <a href="?page={{page_obj.next_page_number}}" data-toggle="tooltip" title="Next" class="btn btn-xs btn-default"> Next</a>
+        {% endif %}
+    </div>
+</div>
+<!-- END Datatables Content -->
+
+
+{% endblock %}
+
+
+
+
+{% block footerblock %}
+
+   <!-- Load and execute javascript code used only in this page -->
+   <script src="{%static 'back/js/pages/tablesDatatables.js' %}"></script>
+   <script>$(function(){ TablesDatatables.init(); });</script>
+        {% endblock %}

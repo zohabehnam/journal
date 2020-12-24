@@ -1,0 +1,384 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+	{% block headblock %}
+	{% endblock %}
+
+
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{%static 'front/images/icons/favicon.png' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{%static 'front/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{%static 'front/fonts/fontawesome-5.0.8/css/fontawesome-all.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{%static 'front/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{%static 'front/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{%static 'front/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{%static 'front/vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{%static 'front/css/util.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{%static 'front/css/main.css' %}">
+<!--===============================================================================================-->
+</head>
+<body class="animsition">
+
+	<!-- Header -->
+	<header>
+		<!-- Header desktop -->
+		<div class="container-menu-desktop">
+			<div class="topbar">
+				<div class="content-topbar h-100 p-rl-30">
+					<div class="align-self-stretch size-w-0 pos-relative m-r-30">
+						<div class="f2-s-1 flex-wr-s-c s-full ab-t-l p-b-2">
+							<span class="text-uppercase cl0 p-r-8">
+
+							</span>
+
+							<span class="dis-inline-block cl16 slide100-txt pos-relative size-w-0" data-in="fadeInDown" data-out="fadeOutDown">
+
+
+
+								<span class="dis-inline-block slide100-txt-item animated visible-false"
+								</span>
+
+
+
+							</span>
+						</div>
+					</div>
+
+
+					<div class="flex-wr-e-c">
+						<div class="left-topbar">
+
+
+
+
+							<a href="signup/" class="left-topbar-item">
+								ثبت نام
+							</a>
+
+							<a href="login/" class="left-topbar-item">
+								ورود
+							</a>
+
+
+
+							<a href="#" class="left-topbar-item"></a>
+						</div>
+
+						<div class="right-topbar p-l-18">
+
+
+
+
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<!--  -->
+			<div class="wrap-logo no-banner container">
+				<!-- Logo desktop -->
+				<div class="logo">
+
+				</div>
+			</div>
+
+			<!--  -->
+			<div class="wrap-main-nav">
+				<div class="main-nav">
+					<!-- Menu desktop -->
+					<nav class="menu-desktop">
+						<a class="logo-stick" href="/">
+
+						</a>
+
+						<ul class="main-menu justify-content-center">
+							<li class="main-menu-active">
+								<a href="/">خانه</a>
+							</li>
+
+
+
+							<li class="mega-menu-item">
+								<a href="#">دسته ها</a>
+
+								<div class="sub-mega-menu">
+									<div class="nav flex-column nav-pills" role="tablist">
+										<a class="nav-link active" data-toggle="pill" href="#news-0" role="tab">همه</a>
+
+
+										<a class="nav-link" data-toggle="pill" href="" role="tab"></a>
+
+									</div>
+
+									<div class="tab-content">
+
+										<div class="tab-pane show active" id="news-0" role="tabpanel">
+											<div class="row">
+
+
+												{% for gg in cat %}
+
+												<div class="col-3">
+													<!-- Item post -->
+													<div>
+
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{% url 'news_all_show' pk=gg.pk %}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{gg.name}}
+																</a>
+															</h5>
+
+															<span class="cl8">
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+
+															</span>
+														</div>
+													</div>
+												</div>
+
+												{% endfor %}
+
+
+											</div>
+										</div>
+
+
+										<div class="tab-pane" id="" role="tabpanel">
+											<div class="row">
+
+
+
+												{% for hh in news %}
+
+												<div class="col-3">
+													<!-- Item post -->
+													<div>
+														<a href="{%url 'news_detail' pk=hh.pk %}"" class="wrap-pic-w hov1 trans-03">
+															<img style="display: inline-block; width:180px; height:120px;" src="{{ hh.image_url }}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{hh.name}}
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="{%url 'news_detail' pk=hh.pk %}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{hh.catname}}
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{hh.jalali_time_added}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+												{% endfor %}
+
+
+											</div>
+										</div>
+
+
+
+
+									</div>
+								</div>
+							</li>
+
+
+
+
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</header>
+
+
+
+
+    {% block mainblock %}
+    {% endblock %}
+
+
+	<!-- Footer -->
+	<footer>
+		<div class="bg2 p-t-40 p-b-25">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4 p-b-20">
+						<div class="size-h-3 flex-s-c">
+							<a href="/">
+							</a>
+						</div>
+
+						<div>
+							<p class="f1-s-1 cl11 p-b-16">
+
+							</p>
+							<br/>
+
+							<p class="f1-s-1 cl11 p-b-16">
+							</p>
+
+							<div class="p-t-15">
+								<a href="" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+								</a>
+
+								<a href="" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+								</a>
+
+
+								<a href="" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+
+								</a>
+							</div>
+
+							<br/>
+
+						</div>
+					</div>
+
+					<div class="col-sm-6 col-lg-4 p-b-20">
+						<div class="size-h-3 flex-s-c">
+							<h5 class="f1-m-7 cl0">
+							</h5>
+						</div>
+
+						<ul>
+
+
+							<li class="flex-wr-sb-s p-b-20">
+								<a href="" class="size-w-4 wrap-pic-w hov1 trans-03">
+								</a>
+
+								<div class="size-w-5">
+									<h6 class="p-b-5">
+										<a href="" class="f1-s-5 cl11 hov-cl10 trans-03">
+
+										</a>
+									</h6>
+
+									<span class="f1-s-3 cl6">
+									</span>
+								</div>
+							</li>
+
+
+						</ul>
+					</div>
+
+					<div class="col-sm-6 col-lg-4 p-b-20">
+						<div class="size-h-3 flex-s-c">
+							<h5 class="f1-m-7 cl0">
+								دسته ها
+							</h5>
+						</div>
+
+
+
+						<ul class="m-t--12">
+
+							{% for c in cat %}
+
+
+							<li class="how-bor1 p-rl-5 p-tb-10">
+								<a href="{%url 'news_all_show' pk=c.pk %}" class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
+
+									{{c.name}}
+
+								</a>
+							</li>
+
+							{% endfor %}
+
+						</ul>
+
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="bg11">
+			<div class="container size-h-4 flex-c-c p-tb-15">
+				<span class="f1-s-1 cl0 txt-center">
+
+
+					<a href="/" class="f1-s-1 cl10 hov-link1"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="" target="_blank">My Team</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+				</span>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<span class="fas fa-angle-up"></span>
+		</span>
+	</div>
+
+	<!-- Modal Video 01-->
+	<div class="modal fade" id="modal-video-01" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog" role="document" data-dismiss="modal">
+			<div class="close-mo-video-01 trans-0-4" data-dismiss="modal" aria-label="Close">&times;</div>
+
+			<div class="wrap-video-mo-01">
+				<div class="video-mo-01">
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--===============================================================================================-->
+	<script src="{%static 'front/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{%static 'front/vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{%static 'front/vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{%static 'front/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{%static 'front/js/main.js' %}"></script>
+
+</body>
+</html>

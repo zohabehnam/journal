@@ -1,0 +1,115 @@
+{% extends 'front/master.html' %}
+
+{% load static %}
+
+
+
+
+{% block headblock %}
+<title>خبر</title>
+{% endblock %}
+
+
+
+
+
+{% block mainblock %}
+
+
+{% for i in news %}
+
+<!-- Breadcrumb -->
+<div class="container">
+		<div class="headline bg0 flex-wr-sb-c p-rl-20 p-tb-8">
+			<div class="f2-s-1 p-r-30 m-tb-6">
+				<a href="/" class="breadcrumb-item f1-s-3 cl9">
+					خانه
+				</a>
+
+				<a href="/" class="breadcrumb-item f1-s-3 cl9">
+					خبرها
+				</a>
+
+				<span class="breadcrumb-item f1-s-3 cl9">
+					{{i.name}}
+				</span>
+			</div>
+
+
+		</div>
+	</div>
+
+	<!-- Content -->
+	<section class="bg0 p-b-140 p-t-10">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-10 col-lg-8 p-b-30">
+					<div class="p-r-10 p-r-0-sr991">
+						<!-- Blog Detail -->
+						<div class="p-b-70">
+							<a href="#" class="f1-s-10 cl2 hov-cl10 trans-03 text-uppercase">
+								{{i.catname}}
+							</a>
+
+							<h3 class="f1-l-3 cl2 p-b-16 p-t-33 respon2">
+								{{i.name}}
+							</h3>
+
+							<div class="flex-wr-s-s p-b-40">
+								<span class="f1-s-3 cl8 m-r-15">
+									<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
+										by {{i.writer}}
+									</a>
+
+									<span class="m-rl-3">-</span>
+
+									<span>
+										{{i.jalali_time_added}}
+									</span>
+								</span>
+
+
+							</div>
+
+							<div class="wrap-pic-max-w p-b-30">
+								<img src="{{ i.image_url }}" alt="IMG">
+							</div>
+
+							<p align="justify" class="f1-s-11 cl6 p-b-25">
+								{{i.body_txt}}
+							</p>
+
+
+
+						</div>
+
+
+
+
+
+
+
+						</div>
+
+
+
+
+
+						</div>
+					</div>
+				</div>
+
+				<!-- Sidebar -->
+
+
+
+
+
+
+
+
+	</section>
+
+{% endfor %}
+
+{% endblock %}
